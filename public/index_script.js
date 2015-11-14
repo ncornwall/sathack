@@ -1,23 +1,21 @@
 var socket = io();
 
 // When the user clicks on send button
-$('#msg-click').click(function(){
-  sendMessage();
+$('.meetup').click(function(){
+  socket.emit('message', " is available to " + $(this).text().toLowerCase());
 });
 
-// Or the user presses enter from the text box
-$('#msg').keydown(function(event) {
-  if (event.keyCode == 13) {
-    sendMessage();
-  }
-});
+// // Or the user presses enter from the text box
+// $('#msg').keydown(function(event) {
+//   if (event.keyCode == 13) {
+//     sendMessage();
+//   }
+// });
 
-var sendMessage = function() {
-  socket.emit('message', $('#msg').val());
-
-  $('#msg').val('');
-};
-
+// var sendMessage = function() {
+//   socket.emit('message', $('#msg').val());
+//   $('#msg').val('');
+// };
 
 // When we receive a user message, add to html list
 socket.on('user-message', function(msg) {
