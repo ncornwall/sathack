@@ -3,7 +3,7 @@ var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var port = 3000;
+var port = process.env.PORT || 5000;
 
 // Serve our index.html page at the root url
 app.get('/', function (req, res) {
@@ -34,6 +34,6 @@ io.on('connection', function (socket) {
 });
 
 // Starts the web server at the given port
-http.listen(port, function(){
+http.listen(process.env.PORT || 5000, function(){
   console.log('Listening on ' + port);
 });
