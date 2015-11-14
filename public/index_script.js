@@ -15,5 +15,4 @@ $('.meetup').click(function(){
 socket.on('user-message', function(msg) {
   var new_msg = $('<div class="panel-body">').text(msg);
   $('#events').append(new_msg);
-  //$('body,html').animate({scrollTop: $('#messages li:last-child').offset().top + 5 + 'px'}, 5);
 });
