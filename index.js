@@ -1,3 +1,5 @@
+global.messages = [];
+
 var app = require('express')();
 var express = require('express');
 var http = require('http').Server(app);
@@ -29,7 +31,17 @@ io.on('connection', function (socket) {
   // message is our custom event, emit the message to everyone
   socket.on('message', function(msg) {
     console.log("Message: " + msg);
-    io.emit('user-message', msg);
+    io.emit('user-message', socket.id + ": " + msg);
+    global.messages.push(socket.id + ": " + msg);
+  });
+
+   // message is our custom event, emit the message to everyone
+  socket.on('pageload', function(msg) {
+  
+    for (var i = 0; i < global.messages.length; i++) {
+      io.emit('user-message', global.messages[i]);
+    }
+
   });
 });
 
@@ -37,5 +49,3 @@ io.on('connection', function (socket) {
 http.listen(process.env.PORT || 5000, function(){
   console.log('Listening on ' + port);
 });
-
-
