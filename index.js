@@ -39,6 +39,11 @@ io.on('connection', function (socket) {
     global.messages.push(msg);
   });
 
+  // reply is another custom event, emit the reply to everyone
+  socket.on('reply', function(msg) {
+    console.log("Reply: " + msg);
+    io.emit('reply', socket.id + ": " + msg);
+  });
 });
 
 // Starts the web server at the given port
