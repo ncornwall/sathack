@@ -1,7 +1,12 @@
 body {
   padding-top: 50px;
   margin-top: 50px;
+  padding-bottom: 200px;
 }
 .container{
 
+}
+
+.red{
+  color: red;
 }

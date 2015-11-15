@@ -1,3 +1,5 @@
+global.messages = [];
+
 var app = require('express')();
 var express = require('express');
 var http = require('http').Server(app);
@@ -18,6 +20,10 @@ io.on('connection', function (socket) {
   // socket.id is a unique id for each socket connection
   console.log(socket.id + ' connected');
 
+  for (var i = 0; i < global.messages.length; i++) {
+    socket.emit('user-message', global.messages[i]);
+  }
+
   // The following two declarations create handlers for
   // socket events on this specific connection
 
@@ -29,14 +35,15 @@ io.on('connection', function (socket) {
   // message is our custom event, emit the message to everyone
   socket.on('message', function(msg) {
     console.log("Message: " + msg);
-    io.emit('user-message', socket.id + ": " + msg);
+    io.emit('user-message', msg);
+    global.messages.push(msg);
   });
 
   // reply is another custom event, emit the reply to everyone
   socket.on('reply', function(msg) {
     console.log("Reply: " + msg);
     io.emit('reply', socket.id + ": " + msg);
-  })
+  });
 });
 
 // Starts the web server at the given port
