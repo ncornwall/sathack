@@ -1,9 +1,9 @@
 var socket = io();
 
-$( document ).ready(function() {
-  // Handler for .ready() called.
-   socket.emit('pageload', 'message');
-});
+// $( document ).ready(function() {
+//   // Handler for .ready() called.
+//    socket.emit('pageload', 'message');
+// });
 
 // When the user clicks on send button
 // $('.meetup').click(function(){

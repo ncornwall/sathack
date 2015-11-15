@@ -20,6 +20,10 @@ io.on('connection', function (socket) {
   // socket.id is a unique id for each socket connection
   console.log(socket.id + ' connected');
 
+  for (var i = 0; i < global.messages.length; i++) {
+    socket.emit('user-message', global.messages[i]);
+  }
+
   // The following two declarations create handlers for
   // socket events on this specific connection
 
@@ -31,18 +35,10 @@ io.on('connection', function (socket) {
   // message is our custom event, emit the message to everyone
   socket.on('message', function(msg) {
     console.log("Message: " + msg);
-    io.emit('user-message', socket.id + ": " + msg);
-    global.messages.push(socket.id + ": " + msg);
+    io.emit('user-message', msg);
+    global.messages.push(msg);
   });
 
-   // message is our custom event, emit the message to everyone
-  socket.on('pageload', function(msg) {
-  
-    for (var i = 0; i < global.messages.length; i++) {
-      io.emit('user-message', global.messages[i]);
-    }
-
-  });
 });
 
 // Starts the web server at the given port
