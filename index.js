@@ -42,7 +42,7 @@ io.on('connection', function (socket) {
   // reply is another custom event, emit the reply to everyone
   socket.on('reply', function(msg) {
     console.log("Reply: " + msg);
-    io.emit('reply', socket.id + ": " + msg);
+    io.emit('reply', msg);
   });
 });
 

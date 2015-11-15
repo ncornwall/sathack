@@ -9,7 +9,7 @@ var socket = io();
  */
 function joinButtonClicked(msg) {
     console.log("Join! was clicked");
-    socket.emit('reply', " will join " + msg);
+    socket.emit('reply', "A surprise guest will join: " + msg);
 }
 
 
