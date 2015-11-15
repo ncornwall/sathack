@@ -10,3 +10,11 @@ body {
 .red{
   color: red;
 }
+
+.join-button{
+	float:right;
+}
+
+li{
+	list-style-type: none;	
+}
