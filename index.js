@@ -1,4 +1,5 @@
 global.messages = [];
+global.replies = [];
 
 var app = require('express')();
 var express = require('express');
@@ -24,6 +25,10 @@ io.on('connection', function (socket) {
     socket.emit('user-message', global.messages[i]);
   }
 
+  for (var i = 0; i < global.replies.length; i++) {
+    socket.emit('reply', global.replies[i]);
+  }
+
   // The following two declarations create handlers for
   // socket events on this specific connection
 
@@ -43,6 +48,7 @@ io.on('connection', function (socket) {
   socket.on('reply', function(msg) {
     console.log("Reply: " + msg);
     io.emit('reply', msg);
+    global.replies.push(msg);
   });
 });
 

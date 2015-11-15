@@ -23,12 +23,11 @@ var desc = document.getElementById("desc").value;
 var startTime = document.getElementById("startTime").value;
 var endTime = document.getElementById("endTime").value;
 var act = document.getElementById("act").value; 
+var form = document.getElementById("myForm");
 
 console.log(name, desc, act, startTime, endTime);
 
 var socket = io();
 socket.emit('message', "@" + name + ": " + desc + "  " + "Time: " + startTime + " - " + endTime + " Activity: " + act);
-
-
-
+form.reset();
 });
