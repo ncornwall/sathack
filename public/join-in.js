@@ -19,5 +19,5 @@ function joinButtonClicked(msg) {
 socket.on('reply', function(msg) {
     var new_reply = $('<div class="panel-body">').text(msg);
     $('#replies').append(new_reply);
-    $('body.html').animate({scrollTop: $('#replies li:last-child').offset().top + 5 + 'px'}, 5);
+    //$('body.html').animate({scrollTop: $('#replies li:last-child').offset().top + 5 + 'px'}, 5);
 });
